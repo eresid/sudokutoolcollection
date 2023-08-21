@@ -1,8 +1,6 @@
 import isIn from "../utility/isIn";
 
 export default class Sudoku {
-    private debug: boolean;
-
     public static DIGITS = '123456789'; // Allowed sudoku.DIGITS
     public static ROWS = 'ABCDEFGHI'; // Row lables
     public static COLS = Sudoku.DIGITS; // Column lables
@@ -27,9 +25,7 @@ export default class Sudoku {
     public SQUARE_UNITS_MAP: Record<string,unknown>|null = null; // Squares -> units map
     public SQUARE_PEERS_MAP: Record<string,unknown>|null = null; // Squares -> peers map
 
-
-    constructor(debug=false) {
-      this.debug = debug;
+    constructor() {
       /* Initialize the Sudoku library (invoked after library load)a
         */
       this.SQUARES = this._cross(Sudoku.ROWS, Sudoku.COLS);
@@ -47,14 +43,6 @@ export default class Sudoku {
         this._cross("GHI","456"),
         this._cross("GHI","789"),
       ]
-    }
-
-
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    log(...args: Array<any>): void {
-      if(this.debug) {
-        console.log.apply(null, args);
-      }
     }
 
     private _cross(a: string, b:string): Array<string> {

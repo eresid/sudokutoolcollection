@@ -10,15 +10,7 @@ export default class SudokuGetCandidates {
         this.instance = instance;
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    log(...args: Array<any>): void {
-      if(this.debug) {
-        console.log.apply(null, args);
-      }
-    }
-
     get(board:string): Array<string[]>|false {
-      this.log("Getting all candidates");
         /* Return all possible candidatees for each square as a grid of
             candidates, returnning `false` if a contradiction is encountered.
     
@@ -31,11 +23,9 @@ export default class SudokuGetCandidates {
         if (report !== true) {
           throw report;
         }
-        this.log("Board valid");
 
         // Get a candidates map
         const candidates_map = this.map(board);
-        this.log("Current map: ", candidates_map);
 
         // If there's an error, return false
         if (!candidates_map) {
@@ -55,7 +45,7 @@ export default class SudokuGetCandidates {
           }
           ++i;
         }
-        this.log("Returned grid: ", rows);
+
         return rows;
       }
     
